@@ -18,7 +18,7 @@ c = Controller(args.controller, args.username, args.password, args.version, args
 
 new_mac = re.sub("-",":",args.mac)
 clients = c.get_clients()
-client = dict([("ip",mac['ip']) for mac in clients if mac['mac']==new_mac])
+client = dict([("ip",mac['ip']) for mac in clients if mac['mac']==new_mac.lower()])
 ip = client.get('ip')
 
 print(ip)

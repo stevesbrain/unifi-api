@@ -3,6 +3,7 @@
 import argparse
 import re
 
+
 from unifi.controller import Controller
 
 parser = argparse.ArgumentParser()
@@ -21,6 +22,6 @@ clients = c.get_clients()
 client = dict([("ip",mac['ip']) for mac in clients if mac['mac']==new_mac.lower()])
 ip = client.get('ip')
 
-print(ip)
+print '{}'.format(ip)
 
 

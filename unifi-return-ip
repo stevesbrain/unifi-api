@@ -15,7 +15,8 @@ parser.add_argument('-m', '--mac', default='00:00:00:00:00:00', help='the mac ad
 args = parser.parse_args()
 
 c = Controller(args.controller, args.username, args.password, args.version, args.siteid)
-new_mac = re.sub('-",":",args.mac)
+
+new_mac = re.sub("-",":",args.mac)
 clients = c.get_clients()
 client = dict([("ip",mac['ip']) for mac in clients if mac['mac']==new_mac])
 ip = client.get('ip')

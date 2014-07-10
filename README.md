@@ -56,6 +56,46 @@ Get a csv file with statistics
 unifi-save-statistics -c localhost -u admin -p p4ssw0rd -v v3 -s default -f filename.csv
 ```
 
+### unifi-return-ip
+
+For use with FreeRADIUS to authenticate against a SonicWall (and others that need the Framed-IP-Address)
+
+#### FreeRADIUS install
+
+sites-enabled/default
+```
+...
+pre-proxy {
+    update proxy-request {
+        Framed-IP-Address := `/usr/bin/python /usr/local/bin/unifi-return-ip -c localhost -u admin -p p4ssw0rd -v v3 -s default -m %{Calling-Station-Id}` 
+    }
+...
+}
+```
+
+proxy.conf
+```
+realm DEFAULT {
+    authhost        = 10.10.1.1:1812 # NPS or FreeRADIUS
+    accthost        = 10.10.0.1:1813 # SonicWall
+    secret          = secret
+}
+```
+
+#### SonicWall install
+
+Users > Settings > Configure SSO > Radius Accounting > Add
+```
+Client: FreeRadius Server
+Shared Secret: secret
+Confirm: secret
+User-name
+No forwarding
+(Don't check the "Log user out if no accounting interim updates are received" option)
+```
+Apply and enjoy!
+
+
 API Example
 -----------
 

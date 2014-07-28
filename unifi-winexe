@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "You need to edit unifi-winexe :) replace x.x.x.x with relevant info"
+#/usr/bin/winexe --system -A /etc/freeradius/auth_file --runas-file /etc/freeradius/auth_file //x.x.x.x "netsh dhcp server x.x.x.x scope x.x.x.x show clients" | awk {'print $1, $4, $5'} > /opt/dhcp_dump
+
+#sed -i.bak 's/ - / /g' /opt/dhcp_dump
+#sed -i.bak 's/ -/ /g' /opt/dhcp_dump
+#sed -i.bak '/^[0-9]/!d' /opt/dhcp_dump
+
+#echo "TRUNCATE TABLE dhcp_dump;" | mysql -uradius -pradpass radius;
+
+#file="/opt/dhcp_dump"
+#cat $file | while read ip mac; do
+#    echo "INSERT INTO dhcp_dump (IP,MAC) VALUES ('$ip', '$mac');"
+#done | mysql -uradius -pradpass radius;
